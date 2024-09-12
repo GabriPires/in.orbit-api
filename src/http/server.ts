@@ -1,6 +1,7 @@
 import { createCompletionRoute } from '@/routes/create-completion'
 import { createGoalRoute } from '@/routes/create-goal'
 import { getPendingGoalsRoute } from '@/routes/get-pending-goals'
+import { getWeekSummaryRoute } from '@/routes/get-week-summary'
 import fastify from 'fastify'
 import {
   serializerCompiler,
@@ -14,6 +15,7 @@ app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
 app.register(getPendingGoalsRoute)
+app.register(getWeekSummaryRoute)
 app.register(createCompletionRoute)
 app.register(createGoalRoute)
 
