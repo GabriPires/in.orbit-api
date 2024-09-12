@@ -1,4 +1,5 @@
 import { createGoal } from '@/functions/create-goal'
+import { createGoalCompletion } from '@/functions/create-goal-completion'
 import { getWeekPendingGoals } from '@/functions/get-week-pending-goals'
 import fastify from 'fastify'
 import {
@@ -20,6 +21,24 @@ app.get('/pending-goals', async () => {
     pendingGoals,
   }
 })
+
+app.post(
+  '/completions',
+  {
+    schema: {
+      body: z.object({
+        goalId: z.string(),
+      }),
+    },
+  },
+  async request => {
+    const { goalId } = request.body
+
+    await createGoalCompletion({
+      goalId,
+    })
+  }
+)
 
 app.post(
   '/goals',
